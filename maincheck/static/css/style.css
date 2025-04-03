@@ -1,0 +1,145 @@
+#barra {
+    background-color: #85827a;
+    min-height: 100vh;
+    max-height: 100vh;
+
+}
+
+.image {
+    width: 120px;
+    height: 145px;
+}
+
+#tab_services {
+    width: 100%;
+    /* Asegura que la tabla ocupe el 100% del contenedor */
+    table-layout: fixed;
+    /* Hace que las columnas tengan un ancho fijo */
+}
+
+th,
+td {
+    word-wrap: break-word;
+    /* Rompe líneas largas dentro de las celdas */
+}
+
+th {
+    width: calc(100% / 3);
+    /* Distribuye las columnas en el 100% del ancho de la tabla */
+}
+
+.table-responsive {
+    overflow-x: auto;
+    /* Asegura que haya desplazamiento horizontal en pantallas pequeñas */
+}
+
+
+#row-tab .dataTables_paginate {
+    margin-right: 35%;
+}
+
+#row-tab .dataTables_paginate .paginate_button.current {
+    background-color: #e9c01b !important;
+    /* Cambia el color de fondo a tu preferencia */
+    color: black;
+}
+
+#row-tab .dataTables_scrollBody::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+#row-tab .dataTables_scrollBody::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 4px;
+}
+
+.image {
+    margin-left: 0px;
+    display: block;
+    width: 190px;
+    height: 165px;
+}
+
+#barra {
+    background-color: #b4d4fa;
+    min-height: 100vh;
+    max-height: 100vh;
+
+}
+
+.mynav {
+    color: black;
+    width: 85%;
+    margin-left: 11px;
+
+}
+
+.mynav li a {
+    color: black;
+    text-decoration: none;
+    display: block;
+    border-radius: 20px;
+    padding: 8px 15px;
+    font-family: Arial;
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.mynav li a.active {
+    transform: translateZ(20px);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.4);
+    background-color: #3232e4;
+    color: black;
+}
+
+.mynav li a:hover {
+    transform: translateZ(20px);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.4);
+    background-color: #3232e4;
+    color: black;
+}
+
+.mynav li a i {
+    width: 25px;
+    text-align: center;
+}
+
+#content_report1 {
+    display: flex;
+    border-radius: 20px;
+    box-shadow: 2px 2px 15px 4px rgba(0, 0, 0, 0.2);
+    width: 100hv;
+}
+
+.start-content {
+    width: 100%;
+    padding: 0px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.text-start {
+    position: absolute; /* Posiciona el texto relativo a .start-content */
+    top: 3%;          /* Ajusta la distancia desde la parte superior */
+    right: 3%;        /* Ajusta la distancia desde el borde derecho */
+    font-size: 1.1vw;    /* Tamaño de la fuente */
+    color: #515151;
+}
+
+.highlight{
+    color:#E9C01B;
+    font-weight: bold;
+}
+
+.image-start {
+    width: 83%; /* Ajusta la imagen al ancho del contenedor */
+    height: auto; ; /* Usa la altura completa del viewport */
+    object-fit: contain;
+    display: block; /* Evita problemas de espacio extra causados por imágenes en línea */
+    
+}
+

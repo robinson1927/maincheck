@@ -1,0 +1,415 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/2.1.8/css/dataTables.bootstrap5.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+    <form action="/admins/modificar_estudiante/" method="post"> {% csrf_token %}
+		<div class="modal fade" id="modificar-estudiante" tabindex="-1" aria-labelledby="exampleModalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog modal-dialog-scrollable">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1 class="modal-title fs-5" id="exampleModalLabel">Modificar estudiante</h1>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						
+                        <input type="hidden" name="id_estudiante" id="id_estudiante">
+
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">NOMBRE</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="nombre" required>
+                            <div id="emailHelp" class="form-text">Ingrese nombre(s).</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">APELLIDO</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="apellido" required>
+                            <div id="emailHelp" class="form-text">Ingrese apellido(s).</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">FECHA DE NACIMIENTO</label>
+                            <input type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="fechaNacimiento" required>
+                            <div id="emailHelp" class="form-text"></div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">DIRECCION </label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="direccion" required>
+                            <div id="emailHelp" class="form-text"></div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">TELEFONO</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="telefono">
+                            <div id="emailHelp" class="form-text"></div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">CORREO </label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" required>
+                            <div id="emailHelp" class="form-text"></div>
+                        </div>
+                        <br>
+                        <select class="form-select" aria-label="Default select example" name="matricula">
+                            <option selected>MATRICULA</option>
+                            <option value="1">Matriculado</option>
+                            <option value="2">No matriculado</option>
+                        </select>
+                        <br>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">SEMESTRE</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="semestre" required>
+                            <div id="emailHelp" class="form-text"></div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">PROMEDIO</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="promedio" required>
+                            <div id="emailHelp" class="form-text"></div>
+                        </div>
+
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary btn-yellow"
+							data-bs-dismiss="modal">Cerrar</button>
+						<button type="submit" class="btn btn-primary btn-yellow">Enviar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+
+
+    <form action="/admins/modificar_docente/" method="post"> {% csrf_token %}
+		<div class="modal fade" id="modificar-docente" tabindex="-1" aria-labelledby="exampleModalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog modal-dialog-scrollable">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1 class="modal-title fs-5" id="exampleModalLabel">Modificar docente</h1>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						
+                        <input type="hidden" name="id_docente" id="id_docente">
+
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">NOMBRE</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="nombre" required>
+                            <div id="emailHelp" class="form-text">Ingrese nombre(s).</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">APELLIDO</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="apellido" required>
+                            <div id="emailHelp" class="form-text">Ingrese apellido(s).</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">FECHA DE NACIMIENTO</label>
+                            <input type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="fechaNacimiento" required>
+                            <div id="emailHelp" class="form-text"></div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">DIRECCION </label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="direccion" required>
+                            <div id="emailHelp" class="form-text"></div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">TELEFONO</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="telefono">
+                            <div id="emailHelp" class="form-text"></div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">CORREO </label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" required>
+                            <div id="emailHelp" class="form-text"></div>
+                        </div>
+                        <br>
+                        {% comment %} <select class="form-select" aria-label="Default select example" name="especializacion">
+                            <option selected>Especializacion</option>
+                            {% for especializacion in especializaciones %}
+                                    <option value="{{ especializacion.id_especializacion }}">{{ especializacion.nombre }}</option>
+                            {% endfor %}
+                        </select>
+                        <br> {% endcomment %}
+
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary btn-yellow"
+							data-bs-dismiss="modal">Cerrar</button>
+						<button type="submit" class="btn btn-primary btn-yellow">Enviar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+
+
+    <form action="/admins/modificar_administrativo/" method="post"> {% csrf_token %}
+		<div class="modal fade" id="modificar-administrativo" tabindex="-1" aria-labelledby="exampleModalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog modal-dialog-scrollable">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1 class="modal-title fs-5" id="exampleModalLabel">Modificar administrativo</h1>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						
+                        <input type="hidden" name="id_administrativo" id="id_administrativo">
+
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">NOMBRE</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="nombre" required>
+                            <div id="emailHelp" class="form-text">Ingrese nombre(s).</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">APELLIDO</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="apellido" required>
+                            <div id="emailHelp" class="form-text">Ingrese apellido(s).</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">FECHA DE NACIMIENTO</label>
+                            <input type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="fechaNacimiento" required>
+                            <div id="emailHelp" class="form-text"></div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">DIRECCION </label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="direccion" required>
+                            <div id="emailHelp" class="form-text"></div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">TELEFONO</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="telefono">
+                            <div id="emailHelp" class="form-text"></div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">CORREO </label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" required>
+                            <div id="emailHelp" class="form-text"></div>
+                        </div>
+                        <br>
+                        {% comment %} <select class="form-select" aria-label="Default select example" name="cargo">
+                            <option selected>Cargo</option>
+                            {% for cargo in cargos %}
+                                    <option value="{{ cargo.id_cargo }}">{{ cargo.nombre }}</option>
+                            {% endfor %}
+                        </select>
+                        <br>
+                        <select class="form-select" aria-label="Default select example" name="dependencia">
+                            <option selected>Dependencia</option>
+                            {% for dependencia in dependencias %}
+                                    <option value="{{ dependencia.id_dependencia }}">{{ dependencia.nombre_dependencia }}</option>
+                            {% endfor %}
+                        </select>
+                        <br> {% endcomment %}
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary btn-yellow"
+							data-bs-dismiss="modal">Cerrar</button>
+						<button type="submit" class="btn btn-primary btn-yellow">Enviar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+
+
+    <form action="/admins/modificar_programa/" method="post"> {% csrf_token %}
+		<div class="modal fade" id="modificar-programa" tabindex="-1" aria-labelledby="exampleModalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog modal-dialog-scrollable">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1 class="modal-title fs-5" id="exampleModalLabel">Modificar Programa</h1>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						
+                        <input type="hidden" name="id_programa" id="id_programa">
+
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">NOMBRE DE PROGRAMA</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="nombre" required>
+                            <div id="emailHelp" class="form-text">Ingrese El nombre del proframa</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Duracion</label>
+                            <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="duracion" required>
+                            <div id="emailHelp" class="form-text">Ingrese la duracion del programa (semestres)</div>
+                        </div>
+                        {% comment %} <select class="form-select" aria-label="Default select example" name="facultad">
+                            <option selected>FACULTAD</option>
+                            {% for facultad in facultades %}
+                                    <option value="{{ facultad.id_facultad }}">{{ facultad.nombre_facultad }}</option>
+                            {% endfor %}
+                        </select>
+                        <br>  
+                        <select class="form-select" aria-label="Default select example" name="docente">
+                            <option selected>ASIGNAR DOCENTE</option>
+                            {% for docente in docentes %}
+                                    <option value="{{ docente.id}}">{{ docente.nombre}}</option>
+                            {% endfor %}
+                        </select>
+                        <br>   {% endcomment %}
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary btn-yellow"
+							data-bs-dismiss="modal">Cerrar</button>
+						<button type="submit" class="btn btn-primary btn-yellow">Enviar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+
+
+    {% comment %} !---------------------------------------------------------------------------
+    !--------------------------------fin modales------------------------- {% endcomment %}
+
+    <div class="container-fluid p-0 d-flex h-100" id="barra">
+        <div id="bdSidebar" class="d-flex flex-column flex-shrink-0 p-3 offcanvas-md offcanvas-start"
+            style="width: 230px;">
+            <a href="" class="navbar-brand">
+                <img class="image" src="{% static 'images/maincheck.png' %}" alt="Imagen de MainCheck">
+
+            </a>
+            <hr>
+            <ul class="mynav nav nav-pills flex-column mb-auto">
+
+                <li class="nav-item mb-1">
+                    <a href="/tasks" class="{% if 'tasks' in request.path %}active{% endif %}">
+                        <img class="icono" src="" alt="">
+                        Tareas
+                    </a>
+                </li>
+                <li class="nav-item mb-1">
+                    <a href="/ejecution" class="{% if 'ejecution' in request.path %}active{% endif %}">
+                        <img class="icono" src="" alt="">
+                        Ejecucion Tareas
+                    </a>
+                </li>
+                <li class="nav-item mb-1">
+                    <a href="/reports" class="{% if 'reports' in request.path %}active{% endif %}">
+                        <img class="icono" src="" alt="">
+                        Informes
+                    </a>
+                </li>
+                <li class="nav-item mb-1">
+                    <a href="/history" class="{% if 'history' in request.path %}active{% endif %}">
+                        <img class="icono" src="" alt="">
+                        Datos históricos
+                    </a>
+                </li>
+
+
+            </ul>
+            <hr>
+            <div>
+                <img src="" class="img-fluid rounded me-2" width="50px">
+                <span>
+                    <h6 class="mt-1 mb-0" style="color: black;">{{username}}</h6>
+                    <small style="color: black;">{{email}}</small>
+                </span>
+            </div>
+        </div>
+        <div class="bg-light flex-fill">
+            <div class="p-2 d-md-none d-flex justify-content-between align-items-center"
+                style="background-color: #85827a;">
+                <div>
+                    <a href="#" class="text-black" data-bs-toggle="offcanvas" data-bs-target="#bdSidebar">
+                        <i class="fa-solid fa-bars"></i>
+                    </a>
+                    <span class="ms-2"><b>Menu</b></span>
+                </div>
+            </div>
+
+
+            <div class="p-4">
+                <div class="d-flex justify-content-between">
+
+                    {% if 'reports' in request.path %}
+                    <h5 class="path">Informes</h5>
+
+                    {% endif %}
+
+                    {% if 'tasks' in request.path %}
+                    <h5 class="path">Tareas</h5>
+
+                    {% endif %}
+
+                    {% if 'ejecution' in request.path %}
+                    <h5 class="path">Ejecucion de tareas</h5>
+
+                    {% endif %}
+
+                    {% if 'history' in request.path %}
+                    <h5 class="path">Datos históricos</h5>
+
+                    {% endif %}
+                </div>
+                <hr>
+
+               
+                {% block content %}
+
+                <div class="d-flex"> 
+                    <div class="start-content">
+                        
+                        <img class="image-start" src="{% static 'images/image_start.svg' %}" alt="">
+                        
+                        
+                    </div>	
+                </div>
+
+                {% endblock %}
+
+            </div>
+
+        </div>
+    </div>
+
+    
+    <script src="{% static 'js/id_update.js' %}"></script>
+    <!-- librerias de bootstrap y jquery -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.8.335/pdf.min.js"></script>
+   
+
+    <!-- librerias de datatables -->
+    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"> </script>
+
+
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"> </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"> </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"> </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"> </script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"> </script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"> </script>
+
+    
+
+</body>
+
+</html>
