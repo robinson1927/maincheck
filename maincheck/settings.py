@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 import dj_database_url
 import os
-import django_dyn_dt
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -63,7 +62,7 @@ TEMPLATE_DIR_DATATB = os.path.join(BASE_DIR, "django_dyn_dt/templates")
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['C:/Users/usuar/Documents/UNIQUINDIO/6_Semestre/proyecto_softwareII/maincheck/templates'],
+        'DIRS': [os.path.join(BASE_DIR, "maincheck/templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -139,6 +138,11 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     "maincheck/static",  # Asegúrate de tener esta línea
 ]
+
+if not DEBUG:
+
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
