@@ -1,12 +1,125 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block content %}
+{% block content %}
 
-<div class="d-flex"> 
-    <h4>
-        Aqui va el calendario
-    </h4>
+{% if user_group == 'Tecnicos' %}
+<div class="modal fade" id="event-detail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <!-- El body se inserta de calendar.js  -->
+
+
+            </div>
+
+            <div class="d-flex justify-content-center gap-3 m-2" >
+                    <button type="button" class="btn btn-blue" data-bs-dismiss="modal" data-bs-toggle="collapse" data-bs-target="#collap-diagnostico" aria-expanded="false" aria-controls="collap-observation">DIAGNOSTICO</button>
+                    <button type="button" class="btn btn-blue" data-bs-dismiss="modal" data-bs-toggle="collapse" data-bs-target="#collap-observation" aria-expanded="false" aria-controls="collap-observation">NUEVA OBSERVACION</button>
+            </div>
+
+            <div class="collapse multi-collapse m-3" id="collap-diagnostico" data-bs-parent="#collapseContainer">
+                    <form id="diagnostico-form" data-url="{% url "guardar_diagnostico" %}" method="post" class="ajax-form"> {% csrf_token %}
+                        <input type="hidden" name="id_mantenimiento" value="">
+
+                        <div class="form-floating">
+                            <textarea class="form-control" name="diagnostico-update" placeholder="Leave a comment here" 
+                            id="floatingTextarea2" style="height: 100px" required></textarea>
+                            <label for="floatingTextarea2">Escribe aqui tu diagnostico</label>
+                        </div>
+
+                        <button type="submit" class="btn btn-blue mt-3">Enviar</button> 
+                    </form>
+            </div>
+
+            <div class="collapse multi-collapse m-3" id="collap-observation" data-bs-parent="#collapseContainer">
+                    <form id="observation-form" data-url="{% url "guardar_observacion" %}" method="post" class="ajax-form"> {% csrf_token %}
+                        <input type="hidden" name="id_mantenimiento" value="">
+
+                        <div class="form-floating">
+                            <textarea class="form-control" name="observations-update" placeholder="Leave a comment here" 
+                            id="floatingTextarea2" style="height: 100px" required></textarea>
+                            <label for="floatingTextarea2">Escribe aqui tu observacion</label>
+                        </div>
+
+                        <button type="submit" class="btn btn-blue mt-3">Enviar</button> 
+                    </form>
+            </div>
+
+            <div class="modal-footer d-flex justify-content-between">
+                <div class="d-flex gap-3">
+
+                    <form data-url="{% url "iniciar_tarea" %}" method = "POST" class="ajax-form" > {% csrf_token %}
+                       
+                        <input type="hidden" name="id_mantenimiento" value="">
+                        <input type="hidden" name="responsable" value="">
+
+                        <button type="summit" class="btn btn-blue">INICIAR</button>
+                    </form>
+
+                    <form  data-url="{% url "finalizar_tarea" %}" method = "POST" class="ajax-form"> {% csrf_token %}
+                        <input type="hidden" name="id_mantenimiento" value="">
+                        <button type="summit" class="btn btn-blue">FINALIZAR</button>
+                    </form>
+
+                </div>
+                <div>
+                    <button type="button" class="btn btn-blue" href="" data-bs-dismiss="modal">CERRAR</button>
+                </div>
+            </div>
+            
+        </div>
+    </div>
 </div>
 
+{% endif %}
+
+
+{% comment %} MODAL DE Supervisores {% endcomment %}
+{% if user_group == 'Supervisores'  %}
+<div class="modal fade" id="event-detail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <!-- El body se inserta de calendar.js  -->
+
+            </div>
+
+            <div class="modal-footer">
+                
+                <div>
+                    <button type="button" class="btn btn-blue" href="" data-bs-dismiss="modal">CERRAR</button>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% if 'tasks' in request.path  %}
+<div class="content6" id="calendar"></div>
+{% endif %}
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+{% comment %}importacion fullcalendar {% endcomment %}
+
+<script src="{% static 'js/calendar.js' %}"></script>
+
+{% comment %} <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script> {% endcomment %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 {% endblock %}
+

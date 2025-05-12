@@ -143,3 +143,23 @@ th {
     
 }
 
+.content6 {
+    display: flex;
+    height: 80vh;
+    border-radius: 20px;
+    box-shadow: 2px 2px 15px 4px rgba(0, 0, 0, 0.2);
+}
+
+.btn-blue {
+    background-color:#3232e4;
+    color: black;
+    font-weight: bold;
+}
+
+.icono {
+    width: 22px;
+    height: 22px;
+    margin-right: 20px;
+    margin-left: 10px;
+}
+

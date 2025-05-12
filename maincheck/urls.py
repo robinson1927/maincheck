@@ -33,10 +33,14 @@ urlpatterns = [
     path('inicio/', views.main, name = 'inicio'),
     
 
-
+    path('tasks_page/', include('task.urls')),
+    path('', include('login.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
     path('tasks/', views.tasks, name = 'Tareas'),
     path('ejecution/', views.ejecution, name = 'ejecucion_tareas'),
     path('reports/', views.reports, name = 'Informes'),
     path('history/', views.history, name = 'history'),
+    path('list_tasks/', views.list_task, name = 'lista_tareas'),
+    path('list_tasks_ejecutions/', views.list_task_ejecutions, name = 'tareas_ejecutadas'),
     
 ]

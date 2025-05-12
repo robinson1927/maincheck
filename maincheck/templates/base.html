@@ -20,13 +20,13 @@
 
 <body>
 
-    <form action="/admins/modificar_estudiante/" method="post"> {% csrf_token %}
-		<div class="modal fade" id="modificar-estudiante" tabindex="-1" aria-labelledby="exampleModalLabel"
+    <form data-url="{% url 'crear_tarea' %}" class = "ajax-form" method="post"> {% csrf_token %}
+		<div class="modal fade" id="crear_tarea" tabindex="-1" aria-labelledby="exampleModalLabel"
 			aria-hidden="true">
 			<div class="modal-dialog modal-dialog-scrollable">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h1 class="modal-title fs-5" id="exampleModalLabel">Modificar estudiante</h1>
+						<h1 class="modal-title fs-5" id="exampleModalLabel">Crear nueva tarea</h1>
 						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
 					<div class="modal-body">
@@ -39,50 +39,54 @@
                             <div id="emailHelp" class="form-text">Ingrese nombre(s).</div>
                         </div>
                         <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">APELLIDO</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="apellido" required>
-                            <div id="emailHelp" class="form-text">Ingrese apellido(s).</div>
+                            <label for="exampleInputEmail1" class="form-label">DESCRIPCION</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="descripcion" required>
+                            <div id="emailHelp" class="form-text">Ingrese la descripcion de la tarea.</div>
                         </div>
                         <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">FECHA DE NACIMIENTO</label>
-                            <input type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="fechaNacimiento" required>
+                            <label for="exampleInputEmail1" class="form-label">FECHA DE INICIO</label>
+                            <input type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="fecha_inicio" required>
                             <div id="emailHelp" class="form-text"></div>
                         </div>
                         <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">DIRECCION </label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="direccion" required>
+                            <label for="exampleInputEmail1" class="form-label">FECHA FIN </label>
+                            <input type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="fecha_fin" required>
                             <div id="emailHelp" class="form-text"></div>
                         </div>
                         <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">TELEFONO</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="telefono">
-                            <div id="emailHelp" class="form-text"></div>
-                        </div>
+							<select class="form-select" aria-label="Default select example" name="estado"
+								required>
+								<option value="" disabled selected>ESTADO</option>
+								<option value="pendiente">PENDIENTE</option>
+								<option value="en_proceso">EN PROCESO</option>
+								<option value="finalizado">FINALIZADO</option>
+							</select>
+						</div>
                         <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">CORREO </label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" required>
+                            <label for="exampleInputEmail1" class="form-label">RESPONSABLE </label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="responsable" required>
                             <div id="emailHelp" class="form-text"></div>
                         </div>
                         <br>
-                        <select class="form-select" aria-label="Default select example" name="matricula">
-                            <option selected>MATRICULA</option>
-                            <option value="1">Matriculado</option>
-                            <option value="2">No matriculado</option>
+                        <select class="form-select" aria-label="Default select example" name="tipo_mantenimiento">
+                            <option selected>TIPO DE MANTENIMIENTO</option>
+                            <option value="1">Mantenimiento preventivo</option>
+                            <option value="2">Mantenimiento correctivo</option>
+                            <option value="2">Mantenimiento predictivo</option>
                         </select>
+
+
                         <br>
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">SEMESTRE</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="semestre" required>
-                            <div id="emailHelp" class="form-text"></div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">PROMEDIO</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="promedio" required>
-                            <div id="emailHelp" class="form-text"></div>
-                        </div>
+                        <div class="form-floating col">
+									<textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" name="observaciones" maxlength="500"></textarea>
+									<label for="floatingTextarea2">&nbsp;&nbsp;Observaciones </label>
+						</div>
 
-
+                        <br>
 					</div>
+
+                    
+
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary btn-yellow"
 							data-bs-dismiss="modal">Cerrar</button>
@@ -94,190 +98,7 @@
 	</form>
 
 
-    <form action="/admins/modificar_docente/" method="post"> {% csrf_token %}
-		<div class="modal fade" id="modificar-docente" tabindex="-1" aria-labelledby="exampleModalLabel"
-			aria-hidden="true">
-			<div class="modal-dialog modal-dialog-scrollable">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h1 class="modal-title fs-5" id="exampleModalLabel">Modificar docente</h1>
-						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-					</div>
-					<div class="modal-body">
-						
-                        <input type="hidden" name="id_docente" id="id_docente">
-
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">NOMBRE</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="nombre" required>
-                            <div id="emailHelp" class="form-text">Ingrese nombre(s).</div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">APELLIDO</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="apellido" required>
-                            <div id="emailHelp" class="form-text">Ingrese apellido(s).</div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">FECHA DE NACIMIENTO</label>
-                            <input type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="fechaNacimiento" required>
-                            <div id="emailHelp" class="form-text"></div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">DIRECCION </label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="direccion" required>
-                            <div id="emailHelp" class="form-text"></div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">TELEFONO</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="telefono">
-                            <div id="emailHelp" class="form-text"></div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">CORREO </label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" required>
-                            <div id="emailHelp" class="form-text"></div>
-                        </div>
-                        <br>
-                        {% comment %} <select class="form-select" aria-label="Default select example" name="especializacion">
-                            <option selected>Especializacion</option>
-                            {% for especializacion in especializaciones %}
-                                    <option value="{{ especializacion.id_especializacion }}">{{ especializacion.nombre }}</option>
-                            {% endfor %}
-                        </select>
-                        <br> {% endcomment %}
-
-
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary btn-yellow"
-							data-bs-dismiss="modal">Cerrar</button>
-						<button type="submit" class="btn btn-primary btn-yellow">Enviar</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</form>
-
-
-    <form action="/admins/modificar_administrativo/" method="post"> {% csrf_token %}
-		<div class="modal fade" id="modificar-administrativo" tabindex="-1" aria-labelledby="exampleModalLabel"
-			aria-hidden="true">
-			<div class="modal-dialog modal-dialog-scrollable">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h1 class="modal-title fs-5" id="exampleModalLabel">Modificar administrativo</h1>
-						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-					</div>
-					<div class="modal-body">
-						
-                        <input type="hidden" name="id_administrativo" id="id_administrativo">
-
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">NOMBRE</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="nombre" required>
-                            <div id="emailHelp" class="form-text">Ingrese nombre(s).</div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">APELLIDO</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="apellido" required>
-                            <div id="emailHelp" class="form-text">Ingrese apellido(s).</div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">FECHA DE NACIMIENTO</label>
-                            <input type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="fechaNacimiento" required>
-                            <div id="emailHelp" class="form-text"></div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">DIRECCION </label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="direccion" required>
-                            <div id="emailHelp" class="form-text"></div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">TELEFONO</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="telefono">
-                            <div id="emailHelp" class="form-text"></div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">CORREO </label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" required>
-                            <div id="emailHelp" class="form-text"></div>
-                        </div>
-                        <br>
-                        {% comment %} <select class="form-select" aria-label="Default select example" name="cargo">
-                            <option selected>Cargo</option>
-                            {% for cargo in cargos %}
-                                    <option value="{{ cargo.id_cargo }}">{{ cargo.nombre }}</option>
-                            {% endfor %}
-                        </select>
-                        <br>
-                        <select class="form-select" aria-label="Default select example" name="dependencia">
-                            <option selected>Dependencia</option>
-                            {% for dependencia in dependencias %}
-                                    <option value="{{ dependencia.id_dependencia }}">{{ dependencia.nombre_dependencia }}</option>
-                            {% endfor %}
-                        </select>
-                        <br> {% endcomment %}
-
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary btn-yellow"
-							data-bs-dismiss="modal">Cerrar</button>
-						<button type="submit" class="btn btn-primary btn-yellow">Enviar</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</form>
-
-
-    <form action="/admins/modificar_programa/" method="post"> {% csrf_token %}
-		<div class="modal fade" id="modificar-programa" tabindex="-1" aria-labelledby="exampleModalLabel"
-			aria-hidden="true">
-			<div class="modal-dialog modal-dialog-scrollable">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h1 class="modal-title fs-5" id="exampleModalLabel">Modificar Programa</h1>
-						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-					</div>
-					<div class="modal-body">
-						
-                        <input type="hidden" name="id_programa" id="id_programa">
-
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">NOMBRE DE PROGRAMA</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="nombre" required>
-                            <div id="emailHelp" class="form-text">Ingrese El nombre del proframa</div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Duracion</label>
-                            <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="duracion" required>
-                            <div id="emailHelp" class="form-text">Ingrese la duracion del programa (semestres)</div>
-                        </div>
-                        {% comment %} <select class="form-select" aria-label="Default select example" name="facultad">
-                            <option selected>FACULTAD</option>
-                            {% for facultad in facultades %}
-                                    <option value="{{ facultad.id_facultad }}">{{ facultad.nombre_facultad }}</option>
-                            {% endfor %}
-                        </select>
-                        <br>  
-                        <select class="form-select" aria-label="Default select example" name="docente">
-                            <option selected>ASIGNAR DOCENTE</option>
-                            {% for docente in docentes %}
-                                    <option value="{{ docente.id}}">{{ docente.nombre}}</option>
-                            {% endfor %}
-                        </select>
-                        <br>   {% endcomment %}
-
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary btn-yellow"
-							data-bs-dismiss="modal">Cerrar</button>
-						<button type="submit" class="btn btn-primary btn-yellow">Enviar</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</form>
+  
 
 
     {% comment %} !---------------------------------------------------------------------------
@@ -293,41 +114,55 @@
             <hr>
             <ul class="mynav nav nav-pills flex-column mb-auto">
 
+                {% if user_group == 'Tecnicos' or user_group == 'Supervisores'  %}
                 <li class="nav-item mb-1">
                     <a href="/tasks" class="{% if 'tasks' in request.path %}active{% endif %}">
-                        <img class="icono" src="" alt="">
+                        <img class="" src="" alt="">
                         Tareas
                     </a>
                 </li>
+                {%  endif %}
+
+                {% if user_group == 'Tecnicos' or user_group == 'Supervisores'  %}
                 <li class="nav-item mb-1">
                     <a href="/ejecution" class="{% if 'ejecution' in request.path %}active{% endif %}">
-                        <img class="icono" src="" alt="">
+                        <img class="" src="" alt="">
                         Ejecucion Tareas
                     </a>
                 </li>
+                {% endif%}
+
+                {% if user_group == 'Gerencia' or user_group == 'Supervisores'  %}
                 <li class="nav-item mb-1">
                     <a href="/reports" class="{% if 'reports' in request.path %}active{% endif %}">
-                        <img class="icono" src="" alt="">
+                        <img class="" src="" alt="">
                         Informes
                     </a>
                 </li>
+                {%endif%}
+
+                {% if user_group == 'Gerencia' or user_group == 'Supervisores'  %}
                 <li class="nav-item mb-1">
                     <a href="/history" class="{% if 'history' in request.path %}active{% endif %}">
-                        <img class="icono" src="" alt="">
+                        <img class="" src="" alt="">
                         Datos históricos
                     </a>
                 </li>
+                {%endif%}
 
 
             </ul>
             <hr>
-            <div>
-                <img src="" class="img-fluid rounded me-2" width="50px">
-                <span>
-                    <h6 class="mt-1 mb-0" style="color: black;">{{username}}</h6>
-                    <small style="color: black;">{{email}}</small>
-                </span>
-            </div>
+            <form method="POST" action="{% url 'logout' %}" >
+                {% csrf_token %}
+                <a href="" class="">
+                <button type="submit" style="background-color: transparent; border: none; padding: 0;margin: 0;box-shadow: none;
+                        color: inherit; font: inherit;">
+                        <img class="icono" src="{% static 'images/icon_exit.svg' %}" alt="">
+                        Salir
+                </button>
+            </a>
+            </form>
         </div>
         <div class="bg-light flex-fill">
             <div class="p-2 d-md-none d-flex justify-content-between align-items-center"
@@ -349,8 +184,18 @@
 
                     {% endif %}
 
-                    {% if 'tasks' in request.path %}
+                    {% if 'tasks' in request.path and user_group == 'Supervisores' %}
                     <h5 class="path">Tareas</h5>
+                    <div class="dropdown-center d-flex justify-content-center">
+						<button class="btn dropdown-toggle btn-blue" type="button"
+							data-bs-toggle="dropdown" aria-expanded="false">
+							Opciones De Tareas
+						</button>
+						<ul class="dropdown-menu">
+							<li><a class="dropdown-item" href="" data-bs-toggle="modal"
+									data-bs-target="#crear_tarea">Crear Tarea</a></li>
+						</ul>
+					</div>
 
                     {% endif %}
 
@@ -365,7 +210,6 @@
                     {% endif %}
                 </div>
                 <hr>
-
                
                 {% block content %}
 
@@ -394,6 +238,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.8.335/pdf.min.js"></script>
+    <script src="{% static 'js/alerts_ajax.js' %}"></script>
    
 
     <!-- librerias de datatables -->

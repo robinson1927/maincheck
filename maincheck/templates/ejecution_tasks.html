@@ -3,10 +3,29 @@
 
 {% block content %}
 
-<div class="d-flex"> 
-    <h4>
-        aqui va la ejecucion de tareas
-    </h4>
+<div id="content_report1" class="container-fluid">
+	<div id="row-tab" class="row container-fluid">
+		<div class="container-fluid">
+			<div class="table-responsive">
+				<table id="reporte_tareas" class="table table-fixed">
+					<thead class="header-services">
+						<tr>
+							<th class="centered">Nombre</th>
+							<th class="centered">Descripcion</th>
+							<th class="centered">Fecha de inicio</th>
+							<th class="centered">Fecha final</th>
+							<th class="centered">Diagnostico</th>
+							<th class="centered">Tipo de mantenimiento</th>
+                            
+						</tr>
+					</thead>
+                    <tbody id="tabla_tareas"></tbody>
+				</table>
+			</div>
+		</div>
+	</div>
 </div>
+
+<script src="{% static 'js/tabla_tasks_ejecutions.js' %}"></script>
 
 {% endblock %}

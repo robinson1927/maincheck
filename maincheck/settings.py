@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'task',
+    'login'
 ]
 
 MIDDLEWARE = [
@@ -62,12 +64,16 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'maincheck.context_processor.custom_context.custom_variable',
             ],
         },
     },
 ]
 
 WSGI_APPLICATION = 'maincheck.wsgi.application'
+
+LOGIN_REDIRECT_URL = 'inicio'
+LOGOUT_REDIRECT_URL = 'inicio'
 
 
 # Database

@@ -3,7 +3,7 @@ let dataTableInitialized = false;
 
 const dataTableOptions = {
     columnDefs: [
-        { className: "centered", targets: [0, 1, 2] }
+        { className: "centered", targets: [0, 1, 2, 3, 4, 5, 6] }
     ],
     responsive: true,
     scrollY: 292,
@@ -19,7 +19,7 @@ const dataTableOptions = {
                 template: 'header-blue'
             },
             exportOptions: {
-                columns: [1, 2, 3]
+                columns: [0, 1, 2, 3, 4, 5, 6]
             }
         },
         {
@@ -30,7 +30,7 @@ const dataTableOptions = {
                 template: 'header-blue'
             },
             exportOptions: {
-                columns: [1, 2, 3]
+                columns: [0, 1, 2, 3, 4, 5, 6]
             },
             customize: function (doc) {
                 doc.pageOrientation = 'landscape'; 
@@ -39,34 +39,38 @@ const dataTableOptions = {
     ],
     destroy: true,
 }
-let tabla_grupos_investigacion = document.getElementById('tabla_grupos_investigacion');
+let tabla_tareas = document.getElementById('tabla_tareas');
 const initDataTable = async () => {
     if (dataTableInitialized) {
         dataTable.destroy();
     }
     await list_services();
 
-    dataTable = $('#resporte_grupos_investigacion').DataTable(dataTableOptions);
+    dataTable = $('#reporte_tareas').DataTable(dataTableOptions);
     dataTableInitialized = true;
 };
 
 const list_services = async () => {
 
     try {
-        const response = await fetch(`http://127.0.0.1:8000/admins/lista_grupos_investigacion/`);
+        const response = await fetch(`http://127.0.0.1:8000/list_tasks/`);
         const data = await response.json();
         let content = ``;
         data.forEach((service, index) => {
             content += `
                 <tr> 
-                    <td>${service.nombre}</td>
-                    <td>${service.cantidad}</td>
-                    <td>${service.promedio}</td>
+                    <td>${service.title}</td>
+                    <td>${service.description}</td>
+                    <td>${service.start}</td>
+                    <td>${service.end}</td>
+                    <td>${service.status}</td>
+                    <td>${service.responsable}</td>
+                    <td>${service.type}</td>
                 </tr>
             `;
 
         });
-        tabla_grupos_investigacion.innerHTML = content;
+        tabla_tareas.innerHTML = content;
     } catch (ex) {
         alert(ex);
         console.log(ex)
