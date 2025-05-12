@@ -11,6 +11,10 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+import dj_database_url
+import os
+import django_dyn_dt
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -43,6 +47,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -52,6 +57,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'maincheck.urls'
+
+TEMPLATE_DIR_DATATB = os.path.join(BASE_DIR, "django_dyn_dt/templates")
 
 TEMPLATES = [
     {
@@ -87,14 +94,10 @@ LOGOUT_REDIRECT_URL = 'inicio'
 # }
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'maincheck',
-        'USER': 'postgres',
-        'PASSWORD': "12345",
-        'HOST': '127.0.0.1',
-        'DATABASE_PORT': '5432',
-    }
+    'default': dj_database_url.config(
+        default= os.environ.get('DB'),
+        conn_max_age = 1200
+    )
 }
 
 
