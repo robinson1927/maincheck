@@ -53,7 +53,7 @@ const initDataTable = async () => {
 const list_services = async () => {
 
     try {
-        const response = await fetch(`http://127.0.0.1:8000/list_tasks_ejecutions/`);
+        const response = await fetch(`https://maincheck.onrender.com/list_tasks_ejecutions/`);
         const data = await response.json();
         let content = ``;
         data.forEach((service, index) => {
