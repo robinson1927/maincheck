@@ -38,9 +38,16 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'task',
-    'login'
+    'login',
+    'django_otp',
+    'django_otp.plugins.otp_totp',
+    'django_otp.plugins.otp_static',
+    'two_factor',
+    'qrcode'
 ]
 
+
+# conexiones en segundo plano para usar librerias de las app
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -49,6 +56,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django_otp.middleware.OTPMiddleware',
 ]
 
 ROOT_URLCONF = 'maincheck.urls'
@@ -72,8 +81,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'maincheck.wsgi.application'
 
+
+LOGOUT_REDIRECT_URL = 'two_factor:login'
+LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'inicio'
-LOGOUT_REDIRECT_URL = 'inicio'
+TWO_FACTOR_LOGIN_REDIRECT_URL = 'inicio'
 
 
 # Database

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Iniciar sesion</title>
+	{% load static %}
+	<link rel="stylesheet" href="{% static 'css/styles_login.css' %}">
+
+</head>
+
+<body>
+	<div class="container">
+		<img class="image" src="{% static 'images/maincheck.png' %}" alt="">
+
+
+	<form method="POST">
+    {% csrf_token %}
+    {{ wizard.management_form }}
+
+    <label for="{{ wizard.form.username.id_for_label }}">Usuario</label>
+    {{ wizard.form.username }}
+
+    <label for="{{ wizard.form.password.id_for_label }}">Contraseña</label>
+    {{ wizard.form.password }}
+
+    {% if wizard.form.errors %}
+    <div class="error-login">
+        <label>
+            <img class="icono" src="{% static 'images/icon_error.svg' %}" alt="">
+            Usuario o contraseña incorrectos
+        </label>
+    </div>
+    {% endif %}
+
+    <button type="submit">Iniciar sesión</button>
+</form>
+	</div>
+</body>
+
+</html>

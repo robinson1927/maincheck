@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Iniciar sesion</title>
+	{% load static %}
+	<link rel="stylesheet" href="{% static 'css/styles_login.css' %}">
+
+</head>
+
+<body>
+
+<div class="container">
+    <img class="image" src="{% static 'images/maincheck.png' %}" alt="">
+
+     {% if wizard.steps.current == "auth" %}
+        <h2></h2>
+        {% elif wizard.steps.current == "token" %}
+            <h2>Verificación en dos pasos</h2>
+            <p>Introduce el código de tu aplicación de autenticación:</p>
+        {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ wizard.management_form }}
+        {{ wizard.form.as_p }}
+
+        {% if wizard.steps.current == "auth" %}
+            <button type="submit">Inicias Sesion</button>
+        {% elif wizard.steps.current == "token" %}
+            <button type="submit">Verificar código</button>
+            <div class="extra-actions">
+                <a href="{% url 'two_factor:setup' %}" class="qr-button">
+                    Configurar nueva aplicación 2FA
+                </a>
+            </div>
+        {% endif %}
+
+        
+    </form>
+
+    <div class="version">
+        <label>@Universidad Del Quindío - Version 1.0.0</label>
+    </div>
+</div>
+
+</body>
+
+</html>
