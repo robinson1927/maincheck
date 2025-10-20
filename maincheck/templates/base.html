@@ -130,11 +130,7 @@
                         Ejecucion Tareas
                     </a>
                 </li>
-                <div class="extra-actions">
-                <a href="{% url 'two_factor:setup' %}" class="qr-button">
-                    Configurar nueva aplicación 2FA
-                </a>
-            </div>
+                
                 {% endif%}
 
                 {% if user_group == 'Gerencia' or user_group == 'Supervisores'  %}
@@ -144,6 +140,7 @@
                         Informes
                     </a>
                 </li>
+                
                 {%endif%}
 
                 {% if user_group == 'Gerencia' or user_group == 'Supervisores'  %}

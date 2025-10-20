@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Configurar autenticación en dos pasos</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles_login.css' %}">
+</head>
+<body>
+    <div class="container">
+        <img class="image" src="{% static 'images/maincheck.png' %}" alt="">
+
+        <h2>Configurar verificación en dos pasos</h2>
+        <p>Escanee este código QR en Google Authenticator o Authy.</p>
+
+        <div class="qr-code">
+            <img src="{% url 'two_factor:qr' %}" alt="Código QR">
+        </div>
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+
+            <label for="{{ form.token.id_for_label }}">Ingrese el código del autenticador:</label>
+            {{ form.token }}
+
+            <button type="submit">Verificar</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -26,7 +26,14 @@
         {{ wizard.form.as_p }}
 
         {% if wizard.steps.current == "auth" %}
-            <button type="submit">Inicias Sesion</button>
+            <button type="submit">Iniciar Sesion</button>
+
+            <div class="extra-actions">
+                <a href="{% url 'password_reset' %}" class="qr-button">
+                    Recuperar contraseña
+                </a>
+            </div>
+
         {% elif wizard.steps.current == "token" %}
             <button type="submit">Verificar código</button>
             <div class="extra-actions">
@@ -34,6 +41,7 @@
                     Configurar nueva aplicación 2FA
                 </a>
             </div>
+            
         {% endif %}
 
         

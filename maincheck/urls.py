@@ -26,6 +26,7 @@ from django.contrib import admin
 from django.urls import path, include
 from maincheck import views
 
+
 #endpoints: ruta de entrada de comunicacion el back con el font 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -43,4 +44,5 @@ urlpatterns = [
     path('list_tasks/', views.list_task, name = 'lista_tareas'),
     path('list_tasks_ejecutions/', views.list_task_ejecutions, name = 'tareas_ejecutadas'),
     
+  
 ]

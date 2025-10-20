@@ -26,6 +26,12 @@
 			{% endif %}
 
 			<button type="submit">Iniciar sesión</button>
+			
+			<div class="extra-actions">
+                <a href="{% url 'password_reset' %}" class="qr-button">
+                    Recuperar contraseña
+                </a>
+            </div>
 
 			<div class="version">
 				<label for="version">@Universidad Del Quindio - Version 1.0.0 </label>
