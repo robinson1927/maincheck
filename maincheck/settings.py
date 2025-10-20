@@ -171,5 +171,5 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
 EMAIL_HOST_USER = "robinzondgb91@gmail.com"
-EMAIL_HOST_PASSWORD = "ajoq kdcr fbtd xwni"
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST')
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
