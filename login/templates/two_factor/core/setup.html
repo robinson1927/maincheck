@@ -3,6 +3,7 @@
 <head>
     <title>Configurar autenticación en dos pasos</title>
     {% load static %}
+    {% load two_factor_tags %}
     <link rel="stylesheet" href="{% static 'css/styles_login.css' %}">
 </head>
 <body>
@@ -10,20 +11,43 @@
         <img class="image" src="{% static 'images/maincheck.png' %}" alt="">
 
         <h2>Configurar verificación en dos pasos</h2>
-        <p>Escanee este código QR en Google Authenticator o Authy.</p>
-
-        <div class="qr-code">
-            <img src="{% url 'two_factor:qr' %}" alt="Código QR">
-        </div>
-
+        
         <form method="post">
             {% csrf_token %}
-            {{ form.non_field_errors }}
+            {{ wizard.management_form }}
 
-            <label for="{{ form.token.id_for_label }}">Ingrese el código del autenticador:</label>
-            {{ form.token }}
+            {% if wizard.steps.current == 'welcome' %}
+                <p>Estás a punto de llevar la seguridad de tu cuenta al siguiente nivel. 
+                Sigue los pasos de este asistente para habilitar la autenticación de dos factores.</p>
+                <button type="submit" class="btn btn-primary">Próximo</button>
 
-            <button type="submit">Verificar</button>
+            {% elif wizard.steps.current == 'generator' %}
+                <p>Escanee este código QR en Google Authenticator o Authy, 
+                luego ingrese el código generado a continuación:</p>
+
+                <div class="qr-code">
+                    <img src="{% url 'two_factor:qr' %}" alt="Código QR">
+                </div>
+
+                {{ form.non_field_errors }}
+                <label for="{{ form.token.id_for_label }}">Ingrese el código del autenticador:</label>
+                {{ form.token }}
+
+                <button type="submit">Verificar</button>
+
+            {% elif wizard.steps.current == 'backup' %}
+                <h2>Códigos de respaldo</h2>
+                <p>Guarde estos códigos en un lugar seguro. 
+                Podrá usarlos si pierde acceso a su aplicación de autenticación.</p>
+
+                <ul>
+                    {% for code in backup_tokens %}
+                        <li><code>{{ code }}</code></li>
+                    {% endfor %}
+                </ul>
+
+                <button type="submit">Finalizar</button>
+            {% endif %}
         </form>
     </div>
 </body>

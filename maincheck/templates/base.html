@@ -152,6 +152,15 @@
                 </li>
                 {%endif%}
 
+                {% if  user_group == 'Tecnicos' or user_group == 'Gerencia' or user_group == 'Supervisores'  %}
+                <li class="nav-item mb-1">
+                    <a href="{% url 'two_factor:setup' %}" class="qr-button">
+                        <img class="" src="" alt="">
+                        Configuracion 2FA
+                    </a>
+                </li>
+                {%endif%}
+
 
             </ul>
             <hr>

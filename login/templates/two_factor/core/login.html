@@ -36,11 +36,7 @@
 
         {% elif wizard.steps.current == "token" %}
             <button type="submit">Verificar código</button>
-            <div class="extra-actions">
-                <a href="{% url 'two_factor:setup' %}" class="qr-button">
-                    Configurar nueva aplicación 2FA
-                </a>
-            </div>
+            
             
         {% endif %}
 

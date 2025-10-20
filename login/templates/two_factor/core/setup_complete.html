@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Configuración completada</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles_login.css' %}">
+</head>
+<body>
+    <div class="container">
+        <img class="image" src="{% static 'images/maincheck.png' %}" alt="">
+
+        <h2>¡Autenticación en dos pasos activada!</h2>
+        <p>La configuración se ha completado correctamente.</p>
+        <p>Ahora tu cuenta está protegida con autenticación de dos factores.</p>
+
+        <a href="{% url 'two_factor:login' %}" class="btn btn-primary">Ir al inicio de sesión</a>
+
+        <div class="version">
+            <label>@Universidad del Quindío - Versión 1.0.0</label>
+        </div>
+    </div>
+</body>
+</html>
