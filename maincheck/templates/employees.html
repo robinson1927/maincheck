@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div id="content_report1" class="container-fluid">
+	<div id="row-tab" class="row container-fluid">
+		<div class="container-fluid">
+			<div class="table-responsive">
+				<table id="reporte_empleados" class="table table-fixed">
+					<thead class="header-services">
+						<tr>
+							<th class="centered">Ver</th>
+							<th class="centered">Nombre</th>
+							<th class="centered">Apellido</th>
+							<th class="centered">Cargo</th>
+							<th class="centered">Area</th>
+							<th class="centered">Borrar</th>
+                            
+						</tr>
+					</thead>
+                    <tbody id="tabla_empleados"></tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="{% static 'js/tabla_employees.js' %}"></script>
+{% endblock %}
