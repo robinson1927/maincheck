@@ -72,7 +72,7 @@ def list_task_ejecutions(request):
           'title': task.nombre,
           'description': task.descripcion,
           'start': task_ejecution.get("fecha_inicio") - timedelta(hours=5),
-          'end': task_ejecution.get("fecha_fin") - timedelta(hours=5),
+          'end': task_ejecution.get("fecha_fin") - timedelta(hours=5) if task_ejecution.get("fecha_fin")  is not None else '' ,
           'Diag': task_ejecution.get("diagnostico"),
           'type': "Mantenimiento preventivo" if task.tipo == "1" else "Mantenimiento correctivo" if task.tipo == "2" else "Mantenimiento predictivo" if task.tipo == "3" else ""
         }
