@@ -52,6 +52,11 @@ INSTALLED_APPS = [
     'qrcode'
 ]
 
+CSRF_TRUSTED_ORIGINS = os.environ.get(
+    'CSRF_TRUSTED_ORIGINS', 
+    'https://maincheck-dvecaxdzbrbjc2fz.brazilsouth-01.azurewebsites.net'
+).split(',')
+
 
 # conexiones en segundo plano para usar librerias de las app
 MIDDLEWARE = [
@@ -66,6 +71,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django_otp.middleware.OTPMiddleware',
 ]
+
 
 ROOT_URLCONF = 'maincheck.urls'
 
