@@ -1,2 +1,1 @@
-python manage.py migrate &&
 gunicorn maincheck.wsgi --bind=0.0.0.0
