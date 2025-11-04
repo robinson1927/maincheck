@@ -31,6 +31,28 @@ jobs:
           python -m venv antenv
           source antenv/bin/activate
           pip install -r requirements.txt
+
+        # crea dependencias, migraciones, ejecuta pruebas unitarias
+      - name: Run Django setup (migrate, collectstatic, test)
+        run: |
+          source antenv/bin/activate
+          python manage.py collectstatic --no-input
+          python manage.py migrate --no-input
+          python manage.py test
+
+        # crea superusuario
+      - name: Run Django setup (migrate, collectstatic, test)
+        run: |
+          source antenv/bin/activate
+          python manage.py shell <<EOF
+          from django.contrib.auth import get_user_model
+          User = get_user_model()
+          if not User.objects.filter(username='admin').exists():
+              User.objects.create_superuser('admin', 'admin@example.com', 'Ro1140416#')
+              print("Superuser created.")
+          else:
+              print("Superuser already exists.")
+          EOF
                 
       # By default, when you enable GitHub CI/CD integration through the Azure portal, the platform automatically sets the SCM_DO_BUILD_DURING_DEPLOYMENT application setting to true. This triggers the use of Oryx, a build engine that handles application compilation and dependency installation (e.g., pip install) directly on the platform during deployment. Hence, we exclude the antenv virtual environment directory from the deployment artifact to reduce the payload size. 
       - name: Upload artifact for deployment jobs
