@@ -37,8 +37,8 @@ jobs:
         run: |
           source antenv/bin/activate
           python manage.py collectstatic --no-input
-          python manage.py migrate --no-input
-          python manage.py test
+        #python manage.py migrate --no-input
+        #python manage.py test
 
         # crea superusuario
       - name: Run Django setup (migrate, collectstatic, test)
