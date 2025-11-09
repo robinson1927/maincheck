@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http.response import JsonResponse 
 from task.models import Mantenimiento, Gestion_mantenimiento
+from rrhh.models import tabla_employee
 from django.contrib.auth.decorators import login_required
 from datetime import timedelta
 
@@ -14,6 +15,12 @@ def main(request):
 def tasks(request):
 
   return render(request, 'tasks.html')
+
+@login_required
+def rrhh(request):
+
+  return render(request, 'employees.html')
+
 
 @login_required
 def ejecution(request):
@@ -78,6 +85,39 @@ def list_task_ejecutions(request):
         }
 
         events.append(event)
+
+  return JsonResponse(events, safe= False)
+
+@login_required
+def list_employee(request):
+  list_employee = tabla_employee.objects.values()
+
+  events = []
+  for employee in list_employee:
+
+    event={
+      '_id': employee.get("id"),
+      'identity':employee.get("identificacion"),
+      'firts_name': employee.get("nombre"),
+      'last_name': employee.get("apellido"),
+      'email': employee.get("correo"),
+      'phone': employee.get("telefono"),
+      'status': employee.get("estado_Civil"),
+      'age': employee.get("edad"),
+      'gender': employee.get("sexo"),
+      'positions': employee.get("cargo"),
+      'salary': employee.get("salario"),
+      'contract': employee.get("tipo_contrato"),
+      'date_admission': employee.get("fecha_ingreso"),
+      'working_day': employee.get("jornada_laboral"),
+      'arl': employee.get("arl"),
+      'eps': employee.get("eps"),
+      'holydays': employee.get("vacaciones"),
+      'area': employee.get("area"),
+      'observations': employee.get("observaciones")
+    }
+
+    events.append(event)
 
   return JsonResponse(events, safe= False)
 

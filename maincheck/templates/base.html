@@ -98,7 +98,154 @@
 	</form>
 
 
-  
+
+    <form data-url="{% url 'crear_empleado' %}" class = "ajax-form" method="post"> {% csrf_token %}
+		<div class="modal fade" id="crear_empleado" tabindex="-1" aria-labelledby="exampleModalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog modal-dialog-scrollable">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1 class="modal-title fs-5" id="exampleModalLabel">Crear nuevo empleado</h1>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						
+                        <input type="hidden" name="id_estudiante" id="id_estudiante">
+                
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">IDENTIFICACION</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="identificacion" required>
+                            <div id="emailHelp" class="form-text">Ingrese identificacion.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">NOMBRE</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="nombre" required>
+                            <div id="emailHelp" class="form-text">Ingrese nombre(s).</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">APELLIDO</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="apellido" required>
+                            <div id="emailHelp" class="form-text">Ingrese apellido(s).</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">CORREO</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="correo" required>
+                            <div id="emailHelp" class="form-text">Ingrese correo electronico.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">TELEFONO</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="telefono" required>
+                            <div id="emailHelp" class="form-text">Ingrese telefono.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">EDAD</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="edad" required>
+                            <div id="emailHelp" class="form-text">Ingrese la edad.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">SALARIO</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="salario" required>
+                            <div id="emailHelp" class="form-text">Ingrese el salario.</div>
+                        </div>
+                        <div class="mb-3">
+							<select class="form-select" aria-label="Default select example" name="arl"
+								required>
+								<option value="" disabled selected>ARL</option>
+								<option value="colpatria">COLPATRIA</option>
+								<option value="colmena">COLMENA</option>
+                                <option value="sura">SURA</option>
+								<option value="seguros_bolivar">SEGUROS BOLIVAR</option>
+							</select>
+						</div>
+                        <div class="mb-3">
+							<select class="form-select" aria-label="Default select example" name="eps"
+								required>
+								<option value="" disabled selected>EPS</option>
+								<option value="nueva_eps">NUEVA EPS</option>
+								<option value="sanitas">SANITAS</option>
+                                <option value="colsalud">COLSALUD</option>
+								<option value="sos">SOS</option>
+                                <option value="asmet_salud">ASMET SALUD</option>
+                                <option value="coomeva">COOMEVA</option>
+							</select>
+						</div>
+                        <div class="mb-3">
+							<select class="form-select" aria-label="Default select example" name="area"
+								required>
+								<option value="" disabled selected>AREA</option>
+								<option value="operativo">OPERATIVO</option>
+								<option value="administrativo">ADMINISTRATIVO</option>
+							</select>
+						</div>
+                        <div class="mb-3">
+							<select class="form-select" aria-label="Default select example" name="estado_Civil"
+								required>
+								<option value="" disabled selected>ESTADO CIVIL</option>
+								<option value="soltero">SOLTERO</option>
+								<option value="casado">CASADO</option>
+                                <option value="viudo(@)">VIUDO(@)</option>
+								<option value="union_libre">UNION LIBRE</option>
+							</select>
+						</div>
+                        <div class="mb-3">
+							<select class="form-select" aria-label="Default select example" name="sexo"
+								required>
+								<option value="" disabled selected>SEXO</option>
+								<option value="masculino">MASCULINO</option>
+								<option value="femenino">FEMENINO</option>
+							</select>
+						</div>
+                        <div class="mb-3">
+							<select class="form-select" aria-label="Default select example" name="cargo"
+								required>
+								<option value="" disabled selected>CARGO</option>
+								<option value="operador">OPERADOR</option>
+								<option value="supervisor">SUPERVISOR</option>
+                                <option value="gerente">GERENTE</option>
+							</select>
+						</div>
+                        <div class="mb-3">
+							<select class="form-select" aria-label="Default select example" name="tipo_contrato"
+								required>
+								<option value="" disabled selected>TIPO DE CONTRATO</option>
+								<option value="fijo">FIJO</option>
+								<option value="indefinido">INDEFINIDO</option>
+                                <option value="prestacion_de_servicios">PRESTACION DE SERVICIOS</option>
+							</select>
+						</div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">FECHA DE INGRESO</label>
+                            <input type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="fecha_ingreso" required>
+                            <div id="emailHelp" class="form-text">Seleccione fecha.</div>
+                        </div>
+                        <div class="mb-3">
+							<select class="form-select" aria-label="Default select example" name="jornada_laboral"
+								required>
+								<option value="" disabled selected>JORNADA LABORAL</option>
+								<option value="diurno">DIURNO</option>
+								<option value="nocturno">NOCTURNO</option>
+							</select>
+						</div>
+                        <br>
+                        <div class="form-floating col">
+									<textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" name="observaciones" maxlength="500"></textarea>
+									<label for="floatingTextarea2">&nbsp;&nbsp;Observaciones </label>
+						</div>
+
+                        <br>
+					</div>
+
+                    
+
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary btn-yellow"
+							data-bs-dismiss="modal">Cerrar</button>
+						<button type="submit" class="btn btn-primary btn-yellow">Enviar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
 
 
     {% comment %} !---------------------------------------------------------------------------
@@ -161,6 +308,24 @@
                 </li>
                 {%endif%}
 
+                {% if user_group == 'rrhh'   %}
+                <li class="nav-item mb-1">
+                    <a href="/rrhh" class="{% if 'rrhh' in request.path %}active{% endif %}">
+                        <img class="" src="" alt="">
+                        Administracion de personal
+                    </a>
+                </li>
+                {%  endif %}
+
+                {% if user_group == 'rrhh'   %}
+                <li class="nav-item mb-1">
+                    <a href="/admin" class="{% if 'tasks' in request.path %}active{% endif %}">
+                        <img class="" src="" alt="">
+                        Gestion de usuario
+                    </a>
+                </li>
+                {%  endif %}
+
 
             </ul>
             <hr>
@@ -195,6 +360,16 @@
 
                     {% endif %}
 
+                    {% if 'rrhh' in request.path %}
+                    <h5 class="path">Recursos Humanos</h5>
+
+                    {% endif %}
+
+                    {% if 'inicio' in request.path %}
+                    <h5 class="path">Inicio</h5>
+
+                    {% endif %}
+
                     {% if 'tasks' in request.path and user_group == 'Supervisores' %}
                     <h5 class="path">Tareas</h5>
                     <div class="dropdown-center d-flex justify-content-center">
@@ -205,6 +380,20 @@
 						<ul class="dropdown-menu">
 							<li><a class="dropdown-item" href="" data-bs-toggle="modal"
 									data-bs-target="#crear_tarea">Crear Tarea</a></li>
+						</ul>
+					</div>
+
+                    {% endif %}
+
+                    {% if 'rrhh' in request.path and user_group == 'rrhh' %}
+                    <div class="dropdown-center d-flex justify-content-center">
+						<button class="btn dropdown-toggle btn-blue" type="button"
+							data-bs-toggle="dropdown" aria-expanded="false">
+							Opciones
+						</button>
+						<ul class="dropdown-menu">
+							<li><a class="dropdown-item" href="" data-bs-toggle="modal"
+									data-bs-target="#crear_empleado">Crear empleado</a></li>
 						</ul>
 					</div>
 
