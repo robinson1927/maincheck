@@ -53,7 +53,7 @@ const initDataTable = async () => {
 const list_services = async () => {
 
     try {
-        const response = await fetch(`https://maincheck.onrender.com/list_tasks/`);
+        const response = await fetch(`https://maincheck-dvecaxdzbrbjc2fz.brazilsouth-01.azurewebsites.net/list_tasks/`);
         const data = await response.json();
         let content = ``;
         data.forEach((service, index) => {
