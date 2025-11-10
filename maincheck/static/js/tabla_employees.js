@@ -55,7 +55,7 @@ let employeesData = [];
 const list_services = async () => {
 
     try {
-        const response = await fetch(`http://127.0.0.1:8000/list_employee/`);
+        const response = await fetch(`https://maincheck-dvecaxdzbrbjc2fz.brazilsouth-01.azurewebsites.net/list_employee/`);
         const data = await response.json();
         employeesData = data;
         let content = ``;
