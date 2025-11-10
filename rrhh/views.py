@@ -51,7 +51,7 @@ def delete_employee(request,employee_id):
     try:
 
         employee = tabla_employee.objects.get(id= employee_id)
-        tabla_employee.delete()
+        employee.delete()
         return JsonResponse({'status': "success",
                                 "message":"Empleado eliminado Correctamente",
                                 "redirect":""})         
