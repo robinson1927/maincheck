@@ -33,7 +33,7 @@ const dataTableOptions = {
                 columns: [0, 1, 2, 3, 4, 5]
             },
             customize: function (doc) {
-                doc.pageOrientation = 'landscape'; 
+                doc.pageOrientation = 'landscape';
             }
         }
     ],
@@ -50,42 +50,83 @@ const initDataTable = async () => {
     dataTableInitialized = true;
 };
 
+let employeesData = [];
+
 const list_services = async () => {
 
     try {
         const response = await fetch(`http://127.0.0.1:8000/list_employee/`);
         const data = await response.json();
+        employeesData = data;
         let content = ``;
         data.forEach((service, index) => {
             content += `
                 <tr> 
 
                     <td>
-                        <a href=""
-                            <button class='btn btn-sm btn-yellow'><i class='fa-solid fa-eye'></i></button>
-                        </a>
+                        <button class='btn btn-sm btn-yellow' onclick="openModal(${service._id})">
+                            <i class='fa-solid fa-eye'></i>
+                        </button>
                     </td>
                     <td>${service.firts_name}</td>
                     <td>${service.last_name}</td>
                     <td>${service.positions}</td>
                     <td>${service.area}</td>
                     <td>
-                        <a href="delete_employee/${service._id}" onclick="return confirm('¿Estás seguro de que deseas eliminar este empleado?')"
-                            <button class='btn btn-sm btn-yellow'><i class='fa-solid fa-trash-can'></i></button>
-                        </a>
+                        <button class='btn btn-sm btn-yellow' onclick="confirmDelete(${service._id})">
+                            <i class='fa-solid fa-trash-can'></i> 
+                        </button>
                     </td>
                 </tr>
             `;
 
         });
         tabla_tareas.innerHTML = content;
+
+
+
     } catch (ex) {
         alert(ex);
         console.log(ex)
     }
 }
 
+function confirmDelete(clientId) {
+    if (confirm("¿Estás seguro de eliminar este cliente?")) {
+        window.location.href = `/rrhh_page/delete_employee/${clientId}`;
+    }
+}
+
+function openModal(employeeId) {
+    console.log("Abrir modal para empleado:", employeeId);
+    const service = employeesData.find(emp => emp._id === employeeId);
+    if (!service) return;
+
+    document.getElementById('modal_identity').textContent = service.identity;
+    document.getElementById('modal_firts_name').textContent = service.firts_name;
+    document.getElementById('modal_last_name').textContent = service.last_name;
+    document.getElementById('modal_email').textContent = service.email;
+    document.getElementById('modal_phone').textContent = service.phone;
+    document.getElementById('modal_status').textContent = service.status;
+    document.getElementById('modal_age').textContent = service.age;
+    document.getElementById('modal_gender').textContent = service.gender;
+    document.getElementById('modal_positions').textContent = service.positions;
+    document.getElementById('modal_salary').textContent = service.salary;
+    document.getElementById('modal_contract').textContent = service.contract;
+    document.getElementById('modal_date_admission').textContent = service.date_admission;
+    document.getElementById('modal_working_day').textContent = service.working_day;
+    document.getElementById('modal_arl').textContent = service.arl;
+    document.getElementById('modal_eps').textContent = service.eps;
+    document.getElementById('modal_holydays').textContent = service.holydays;
+    document.getElementById('modal_area').textContent = service.area;
+    document.getElementById('modal_observations').textContent = service.observations;
+    
+
+    const modal = new bootstrap.Modal(document.getElementById('employee-detail'));
+    modal.show();
+}
+
 window.addEventListener('load', async () => {
     await initDataTable();
-    
+
 });
