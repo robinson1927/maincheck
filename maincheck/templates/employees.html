@@ -1,0 +1,170 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="modal fade" id="employee-detail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Ficha Del Empleado</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <div class="container py-3">
+					<div class="row">
+						<!-- Información del empleado -->
+						<div class="col-md-8">
+						<div class="row g-3">
+							
+							<div class="col-md-6">
+							<small class="text-muted d-block">Cédula</small>
+							<p id="modal_identity" class="fw-semibold mb-1"></p>
+							</div>
+
+							<div class="col-md-6">
+							<small class="text-muted d-block">Nombre</small>
+							<p class="fw-semibold mb-1">
+								<span id="modal_firts_name"></span> <span id="modal_last_name"></span>
+							</p>
+							</div>
+
+							<div class="col-md-6">
+							<small class="text-muted d-block">Correo</small>
+							<p id="modal_email" class="mb-1"></p>
+							</div>
+
+							<div class="col-md-6">
+							<small class="text-muted d-block">Teléfono</small>
+							<p id="modal_phone" class="mb-1"></p>
+							</div>
+
+							<div class="col-md-6">
+							<small class="text-muted d-block">Área</small>
+							<p id="modal_area" class="mb-1"></p>
+							</div>
+
+							<div class="col-md-6">
+							<small class="text-muted d-block">Cargo</small>
+							<p id="modal_positions" class="mb-1"></p>
+							</div>
+
+							<div class="col-md-6">
+							<small class="text-muted d-block">Edad</small>
+							<p id="modal_age" class="mb-1"></p>
+							</div>
+
+							<div class="col-md-6">
+							<small class="text-muted d-block">Género</small>
+							<p id="modal_gender" class="mb-1"></p>
+							</div>
+
+							<div class="col-md-6">
+							<small class="text-muted d-block">Estado</small>
+							<p id="modal_status" class="mb-1"></p>
+							</div>
+
+							<div class="col-md-6">
+							<small class="text-muted d-block">Salario</small>
+							<p id="modal_salary" class="mb-1"></p>
+							</div>
+
+							<div class="col-md-6">
+							<small class="text-muted d-block">Tipo de contrato</small>
+							<p id="modal_contract" class="mb-1"></p>
+							</div>
+
+							<div class="col-md-6">
+							<small class="text-muted d-block">Fecha de ingreso</small>
+							<p id="modal_date_admission" class="mb-1"></p>
+							</div>
+
+							<div class="col-md-6">
+							<small class="text-muted d-block">Jornada</small>
+							<p id="modal_working_day" class="mb-1"></p>
+							</div>
+
+							<div class="col-md-6">
+							<small class="text-muted d-block">ARL</small>
+							<p id="modal_arl" class="mb-1"></p>
+							</div>
+
+							<div class="col-md-6">
+							<small class="text-muted d-block">EPS</small>
+							<p id="modal_eps" class="mb-1"></p>
+							</div>
+
+							<div class="col-md-6">
+							<small class="text-muted d-block">Vacaciones</small>
+							<p id="modal_holydays" class="mb-1"></p>
+							</div>
+						</div>
+
+						<!-- Observaciones -->
+						<div class="mt-4">
+							<small class="text-muted d-block">Observaciones</small>
+							<div id="modal_observations" class="border rounded p-2 bg-light" style="min-height: 60px;"></div>
+						</div>
+						</div>
+
+						<!-- Imagen del empleado -->
+						<div class="col-md-4 d-flex flex-column align-items-center">
+						<div class="rounded-circle overflow-hidden border border-primary shadow-sm mb-3" style="width: 150px; height: 150px;">
+							<img id="modal_photo" src="{% static 'images/foto.jpeg' %}" class="w-100 h-100 object-fit-cover" alt="Foto del empleado">
+						</div>
+						<p class="text-muted small">Foto del empleado</p>
+						</div>
+					</div>
+					</div>
+
+
+            </div>
+
+            <div class="modal-footer d-flex justify-content-between">
+                <div class="d-flex gap-3">
+
+                    {% comment %} <form data-url="{% url "iniciar_tarea" %}" method = "POST" class="ajax-form" > {% csrf_token %}
+                       
+                        <input type="hidden" name="id_mantenimiento" value="">
+                        <input type="hidden" name="responsable" value="">
+
+                        <button type="summit" class="btn btn-blue">MODIFICAR</button>
+                    </form> {% endcomment %}
+
+                </div>
+                <div>
+                    <button type="button" class="btn btn-blue" href="" data-bs-dismiss="modal">CERRAR</button>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<div id="content_report1" class="container-fluid">
+	<div id="row-tab" class="row container-fluid">
+		<div class="container-fluid">
+			<div class="table-responsive">
+				<table id="reporte_empleados" class="table table-fixed">
+					<thead class="header-services">
+						<tr>
+							<th class="centered">Ver</th>
+							<th class="centered">Nombre</th>
+							<th class="centered">Apellido</th>
+							<th class="centered">Cargo</th>
+							<th class="centered">Area</th>
+							<th class="centered">Borrar</th>
+                            
+						</tr>
+					</thead>
+                    <tbody id="tabla_empleados"></tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="{% static 'js/tabla_employees.js' %}"></script>
+
+{% endblock %}

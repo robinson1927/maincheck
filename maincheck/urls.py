@@ -25,6 +25,7 @@ urlpatterns = [
 from django.contrib import admin
 from django.urls import path, include
 from maincheck import views
+from rrhh import views as rrhh_views
 
 
 #endpoints: ruta de entrada de comunicacion el back con el font 
@@ -35,14 +36,17 @@ urlpatterns = [
     
 
     path('tasks_page/', include('task.urls')),
+    path('rrhh_page/', include('rrhh.urls')),
     path('', include('login.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('tasks/', views.tasks, name = 'Tareas'),
+    path('rrhh/', views.rrhh, name = 'Recursos_humanos'),
+    path('list_employee/', views.list_employee, name = 'lista_empleados'),    
     path('ejecution/', views.ejecution, name = 'ejecucion_tareas'),
     path('reports/', views.reports, name = 'Informes'),
     path('history/', views.history, name = 'history'),
     path('list_tasks/', views.list_task, name = 'lista_tareas'),
-    path('list_tasks_ejecutions/', views.list_task_ejecutions, name = 'tareas_ejecutadas'),
-    
+    path('list_tasks_ejecutions/', views.list_task_ejecutions, name = 'tareas_ejecutadas'),    
+   # path('rrhh/delete_employee/<employee_id>', rrhh_views.delete_employee, name = 'eliminar_empleado'),
   
 ]
